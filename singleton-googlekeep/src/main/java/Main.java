@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import modelo.Anotacao;
+import modelo.Configuracao;
 import persistencia.AnotacaoDAO;
 import spark.ModelAndView;
 import spark.Request;
@@ -18,33 +19,53 @@ public class Main {
 
 		Spark.staticFileLocation("/public");
 		
-		final MustacheTemplateEngine mustache = new MustacheTemplateEngine();
+		final TemplateEngine mustache = new MustacheTemplateEngine();
 		
 		final AnotacaoDAO anotacaoDAO = new AnotacaoDAO();
-	
+		
+		final Map<String, Object> params = new HashMap<String, Object>();
+			
 		Spark.get("/", new TemplateViewRoute() {
-
+			
+			public ModelAndView handle(Request req, Response res) throws Exception {
+				
+				params.clear();
+				params.put("configuracao", Configuracao.getUniqueInstance());
+				
+		        return new ModelAndView(params, "index.html");
+			}
+			
+		}, mustache);
+		
+		Spark.post("/edit", new Route() {
+			
+			public Object handle(Request req, Response res) throws Exception {
+		        
+				Configuracao.getUniqueInstance().setNome(req.queryParams("nome"));
+				Configuracao.getUniqueInstance().setTitulo(req.queryParams("titulo"));
+				Configuracao.getUniqueInstance().setFrase(req.queryParams("frase"));
+				Configuracao.getUniqueInstance().setTamanhoTituloMax(Integer.parseInt(req.queryParams("tamanhoTituloMax")));
+				Configuracao.getUniqueInstance().setTamanhoTituloMin(Integer.parseInt(req.queryParams("tamanhoTituloMin")));
+				
+				res.redirect("/");
+				
+				return null;
+			}
+			
+		});
+		
+		Spark.get("/notas", new TemplateViewRoute() {
+			
 			public ModelAndView handle(Request req, Response res) throws Exception {
 				ArrayList<Anotacao> notas = anotacaoDAO.listar();
 				
-				Map<String, Object> map = new HashMap<String, Object>();
-		        if (req.session().attribute("email") != null) map.put("email", req.session().attribute("email").toString());
-		        if (req.session().attribute("codigo") != null) map.put("codigo", req.session().attribute("codigo").toString());
-		        
-		        map.put("anotacoes", notas);
-
-		        return new ModelAndView(map, "index.html");
+				params.clear();
+				params.put("anotacoes", notas);
+				
+		        return new ModelAndView(params, "notas.html");
 			}
 			
-		}, new MustacheTemplateEngine());
-		
-		Spark.get("/notas", new Route() {
-			
-			public Object handle(Request req, Response res) throws Exception {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		});
+		}, mustache);
 		
 		Spark.get("/notas/:id", new Route() {
 			
@@ -57,7 +78,10 @@ public class Main {
 		Spark.post("/notas", new Route() {
 			
 			public Object handle(Request req, Response res) throws Exception {
-				// TODO Auto-generated method stub
+				
+				anotacaoDAO.inserir(new Anotacao(req.queryParams("titulo"), req.queryParams("descricao")));
+				
+				res.redirect("/notas");
 				return null;
 			}
 		});
@@ -65,7 +89,10 @@ public class Main {
 		Spark.put("/notas/:id", new Route() {
 			
 			public Object handle(Request req, Response res) throws Exception {
-				// TODO Auto-generated method stub
+				
+				anotacaoDAO.alterar(new Anotacao(req.queryParams("titulo"), req.queryParams("descricao"), Integer.parseInt(req.queryParams("id"))));
+				
+				res.redirect("/notas");
 				return null;
 			}
 		});

@@ -1,3 +1,5 @@
+package routes;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -100,7 +102,7 @@ public class Main {
 		Spark.delete("/notas/:id", new Route() {
 			
 			public Object handle(Request req, Response res) throws Exception {
-				// TODO Auto-generated method stub
+				// TODO delete nota
 				return null;
 			}
 		});

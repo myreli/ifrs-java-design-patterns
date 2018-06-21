@@ -1,4 +1,4 @@
-package negocio;
+package model;
 
 /**
  *
@@ -8,17 +8,17 @@ public class HomeTheaterFacade {
 
     private PopCornMaker popper;
     private Lights lights;
-    private Tela screen;
+    private Screen screen;
     private Amplifier amp;
     private DvdPlayer dvd;
-    private Projetor projector;
+    private Projector projector;
 
-    public HomeTheaterFacade(PopCornMaker popper, Lights lights, Tela screen, Amplifier amp, DvdPlayer dvd, Projetor projector) {
+    public HomeTheaterFacade(PopCornMaker popper, Lights lights, Screen screen, Amplifier amp, DvdPlayer dvd, Projector projector) {
         this.popper = popper;
         this.lights = lights;
         this.screen = screen;
-        this.amp = amp;
-        this.dvd = dvd;
+        this.amp 	= amp;
+        this.dvd 	= dvd;
         this.projector = projector;
     }
 

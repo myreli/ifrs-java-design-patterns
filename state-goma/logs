@@ -1,0 +1,25 @@
+20180408_232747 | controlador criado com 0 moedas e 10 gomas. | ControladorSemMoeda
+20180408_232747 | chamada insereMoeda | ControladorSemMoeda
+20180408_232747 | inserindo moeda... tem moeda? true | ControladorRecebeuMoeda
+20180408_232747 | chamada acionaAlavanca | ControladorRecebeuMoeda
+20180408_232747 | chamada entregaGoma | ControladorGomaVendida
+20180408_232747 | agora tem 9 gomas e 1 moedas | ControladorGomaVendida
+20180408_232747 | controlador no estado inicial | ControladorSemMoeda
+20180408_233242 | -----
+--------
+controlador criado com 0 moedas e 10 gomas. | ControladorSemMoeda
+20180408_233242 | chamada insereMoeda | ControladorSemMoeda
+20180408_233242 | inserindo moeda... tem moeda? true | ControladorRecebeuMoeda
+20180408_233242 | chamada acionaAlavanca | ControladorRecebeuMoeda
+20180408_233242 | chamada entregaGoma | ControladorGomaVendida
+20180408_233242 | agora tem 9 gomas e 1 moedas | ControladorGomaVendida
+20180408_233242 | controlador no estado inicial | ControladorSemMoeda
+20180411_205232 | -----
+--------
+controlador criado com 0 moedas e 10 gomas. | ControladorSemMoeda
+20180411_205232 | chamada insereMoeda | ControladorSemMoeda
+20180411_205232 | inserindo moeda... tem moeda? true | ControladorRecebeuMoeda
+20180411_205232 | chamada acionaAlavanca | ControladorRecebeuMoeda
+20180411_205232 | chamada entregaGoma | ControladorGomaVendida
+20180411_205232 | agora tem 9 gomas e 1 moedas | ControladorGomaVendida
+20180411_205232 | controlador no estado inicial | ControladorSemMoeda

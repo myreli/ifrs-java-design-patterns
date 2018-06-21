@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.model;
+
+/**
+ * @author myreli
+ *
+ */
+public interface Turkey {
+
+	public void gobble();
+	public void fly();
+	
+}
